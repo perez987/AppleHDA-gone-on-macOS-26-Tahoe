@@ -23,22 +23,22 @@ Disadvantages:
 - Slightly higher CPU usage than the motherboard chip.
 - Only two connections: speakers (headphones) and microphone, sufficient for most users, but not all.
 
-### Reinstall AppleHDA.kext: MyKextInstaller and SimpleLoader
+### Reinstall AppleHDA.kext: MyKextInstaller, WifiPatcherPro and SimpleLoader
 
 Developers are already looking for a way to reinstall AppleHDA.kext, extracted from Tahoe Beta 1 or Sequoia installation. It's not a simple task since this kext must be located in /System/Library/Extensions, which by design is a non-writable folder.
 
 OCLP team is working on a patch that will be applied similarly to current root patches. Still in an early stage, it's not yet viable for end users.
 
-*Mirone* has [MyKextInstaller](https://github.com/Mirone/MyKextInstaller) app. Although it's on GitHub, source code isn't yet available. Its interface is simpler, making it very easy to use. As an added benefit, you can also download AppleHDA.kext along with the app.
+*Mirone* has [MyKextInstaller](https://github.com/Mirone/MyKextInstaller). Although it's on GitHub, source code isn't yet available. The interface is simple and user-friendly, making it very easy to use. As an added benefit, you can also download AppleHDA.kext along with the app.
 
-*Laobamac* has SimpleLoader app on GitHub. It's implemented in SwiftUI. Main drawback is that base language is Chinese. There are already translations to English, Spanish, Korean and Brazilian Portuguese, not up to date on the *Laobamac* repo but they are in [my fork](https://github.com/perez987/SimpleLoader).
+*Laobamac* has SimpleLoader app on GitHub. It's implemented in SwiftUI. Main drawback is that base language is Chinese. There are already translations, not up to date on the *Laobamac* repo but they are in [my fork](https://github.com/perez987/SimpleLoader).
+
+SimpleLoader hasn't been updated in a while and seems a bit outdated. MyKextInstaller receives regular updates and is more up-to-date.
 
 Both applications allow you:
 
-- to get back sound from the built-in audio hardware by reinstalling AppleHDA.kext (extracted from first Tahoe beta)
-- to restore the system to the last unmodified system image (last sealed snapshot) to undo the process.
-
-I've tested them and they seem to work fine for installing AppleHDA.kext and for reverting the installation.
+- get back sound from the built-in audio hardware by reinstalling AppleHDA.kext (extracted from first Tahoe beta)
+- restore the system to the last unmodified system image (last sealed snapshot) to undo the process.
 
 ### Requirements for MyKextInstaller and SimpleLoader
 
