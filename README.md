@@ -93,5 +93,4 @@ No variant specified, falling back to release
 
 ### Reminder
 
-Upgrading or installing macOS Tahoe will lose these changes and you'll need to reinstall AppleHDA.kext again.
-
+If using MyKextInstaller, upgrading or reinstalling macOS Tahoe will lose these changes and you'll need to reinstall AppleHDA.kext again.
