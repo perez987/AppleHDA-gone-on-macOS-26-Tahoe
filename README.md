@@ -78,19 +78,6 @@ Simple interface. The app is now signed and notarized, so you will no longer see
 
 ![MKI](Img/MKI.png)
 
-### Restart
-
-You must restart your computer for the AppleHDA.kext installation to take effect. After restarting, integrated audio should work as it did in Sequoia and earlier versions. You can verify that AppleHDA is loading with kextstat command:
-
-```
-/Users/yo > kextstat | grep "AppleHDA"
-Executing: /usr/bin/kmutil showloaded
-No variant specified, falling back to release
-150 1 0xffffff7f94b17000 0x12fb4 0x12fb4 com.apple.driver.AppleHDAController (600.2) 759DA883-704E-34C3-82CC-616197AE4284 <149 147 110 19 9 8 7 6 3 1>
-164 0 0xffffff7f94a60000 0x8fe90 0x8fe90 com.apple.driver.AppleHDA (600.2) 0E40ED12-AD6D-3015-9DD0-55149B145A2A <163 150 149 147 121 110 8 7 6 3 1>
-165 0 0xffffff7f94b2e000 0x8d6 0x8d6 com.apple.driver.AppleHDAHardwareConfigDriver (600.2) C4C8A9E5-267F-3238-9806-CCDB47297AC6 <6 3>
-```
-
 ### Reminder
 
 If using MyKextInstaller, upgrading or reinstalling macOS Tahoe will lose these changes and you'll need to reinstall AppleHDA.kext again.
