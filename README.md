@@ -27,7 +27,7 @@ Disadvantages:
 
 Developers have been looking for a way to reinstall AppleHDA.kext, extracted from Tahoe Beta 1 or Sequoia installation. It's not a simple task since this kext must be located in /System/Library/Extensions, which by design is a non-writable folder.
 
-OCLP team is working on a patch that will be applied similarly to current root patches. Still in an beta stage, it's not yet viable for end users.
+[OCLP](https://github.com/dortania/OpenCore-Legacy-Patcher) team is working on a patch that will be applied similarly to current root patches. Still in a beta stage, it's not yet viable for end users.
 
 *Mirone* has [MyKextInstaller](https://github.com/Mirone/MyKextInstaller). Although it's on GitHub, source code isn't yet available. The interface is simple and user-friendly, making it very easy to use. As an added benefit, you can also download AppleHDA.kext along with the app. It modifies the system volume and rebuild kernel collections.
 
@@ -77,7 +77,7 @@ For any other questions, consult the README on GitHub.
 Simple interface. The app is now signed and notarized, so you will no longer see 'Move the application to the trash' message.
 
 ![MKI](Img/MKI.png)
-
+[[title](https://github.com/dortania/OpenCore-Legacy-Patcher)](https://github.com/dortania/OpenCore-Legacy-Patcher)
 ### Reminder
 
 If using MyKextInstaller, upgrading or reinstalling macOS Tahoe will lose these changes and you'll need to reinstall AppleHDA.kext again.
