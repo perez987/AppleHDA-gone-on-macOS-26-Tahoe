@@ -23,24 +23,27 @@ Disadvantages:
 - Slightly higher CPU usage than the motherboard chip.
 - Only two connections: speakers (headphones) and microphone, sufficient for most users, but not all.
 
-### Reinstall AppleHDA.kext: MyKextInstaller, WifiPatcherPro and SimpleLoader
+### Reinstall AppleHDA.kext: MyKextInstaller, SimpleHDA and HDAUniversal
 
-Developers are already looking for a way to reinstall AppleHDA.kext, extracted from Tahoe Beta 1 or Sequoia installation. It's not a simple task since this kext must be located in /System/Library/Extensions, which by design is a non-writable folder.
+Developers have been looking for a way to reinstall AppleHDA.kext, extracted from Tahoe Beta 1 or Sequoia installation. It's not a simple task since this kext must be located in /System/Library/Extensions, which by design is a non-writable folder.
 
-OCLP team is working on a patch that will be applied similarly to current root patches. Still in an early stage, it's not yet viable for end users.
+OCLP team is working on a patch that will be applied similarly to current root patches. Still in an beta stage, it's not yet viable for end users.
 
-*Mirone* has [MyKextInstaller](https://github.com/Mirone/MyKextInstaller). Although it's on GitHub, source code isn't yet available. The interface is simple and user-friendly, making it very easy to use. As an added benefit, you can also download AppleHDA.kext along with the app.
+*Mirone* has [MyKextInstaller](https://github.com/Mirone/MyKextInstaller). Although it's on GitHub, source code isn't yet available. The interface is simple and user-friendly, making it very easy to use. As an added benefit, you can also download AppleHDA.kext along with the app. It modifies the system volume and rebuild kernel collections.
 
-*Laobamac* has SimpleLoader app on GitHub. It's implemented in SwiftUI. Main drawback is that base language is Chinese. There are already translations, not up to date on the *Laobamac* repo but they are in [my fork](https://github.com/perez987/SimpleLoader).
+*Laobamac* has [SimpleHDA](https://github.com/laobamac/SimpleHDA). The source code is available. SimpleHDA is a Lilu plug-in that restores the original AppleHDA stack through OpenCore injection, allowing AppleALC to use your existing audio configuration. It does not modify the system volume or rebuild kernel collections.
 
-SimpleLoader hasn't been updated in a while and seems a bit outdated. MyKextInstaller receives regular updates and is more up-to-date.
+*Mald0n* has [HDAUniversal](https://www.insanelymac.com/forum/topic/362932-hdauniversal-applehda-like-audio-kext-for-macos-tahoe-and-hackintosh-systems/), a modern AppleHDA-like audio kernel extension for macOS and Hackintosh systems. 
 
-Both applications allow you:
+These applications allows you:
 
-- get back sound from the built-in audio hardware by reinstalling AppleHDA.kext (extracted from first Tahoe beta)
-- restore the system to the last unmodified system image (last sealed snapshot) to undo the process.
+- get back sound from the built-in audio hardware by reinstalling AppleHDA.kext (extracted from first Tahoe beta) or a different audio kext.
 
-### Requirements for MyKextInstaller and SimpleLoader
+MyKextInstaller also allows you:
+
+- restore the system to the last unmodified system image (last sealed snapshot) to undo the process; this is not necessary with SimpleHDA or HDAUniversal.
+
+### Requirements for MyKextInstaller
 
 - Tahoe Kernel Debug Kit. If the same macOS version exists (e.g., `Kernel Debug Kit 26.2 build 25C56` for `macOS Tahoe 26.2 build 25C56`), that's the one to use. If it doesn't exist because Apple hasn't released it yet, use the closest previous version.
 - AppleALC version 1.9.5 or later in the OpenCore Kexts folder and in config.plist (as usual)
@@ -50,40 +53,30 @@ Both applications allow you:
 
 **Note**: AppleHDA.kext that exists in the macOS 15 Sequoia installation also works.
 
-### MyKextInstaller
+### SimpleHDA installation
+
+- Remove other AppleHDA restoration solutions or root patches before installation to avoid loading the stack twice
+- Download the RELEASE package from the [releases page](https://github.com/laobamac/SimpleHDA/releases), extract it and copy SimpleHDA.kext to EFI/OC/Kexts
+- Add it to Kernel → Add in this order: Lilu → AppleALC → SimpleHDA. The package includes an example entry in OpenCore-Kernel-Add.plist
+- Add `keepsyms=1` and retain the working AppleALC, layout and ACPI configuration for your machine
+- Optionally install `SimpleHDA-HAL-1.0.0.pkg`
+- Reboot.
+
+There is a boot arg `shda-lang=en` that overrides the automatically detected language of device names (default Chinese). Languages supported by `shda-lang` are the same of `AppleHDA.kext`.
+
+For any other questions, consult the README on GitHub.
+
+### HDAUniversal installation
+
+- Remove other AppleHDA restoration solutions or root patches before installation to avoid issues
+- Run the PKG installer, available inside the downloaded ZIP
+- Open `System Settings` > `Privacy & Security` and allow the HDAUniversal kernel extension if macOS asks for permission.
+
+### MyKextInstaller screenshot
 
 Simple interface. The app is now signed and notarized, so you will no longer see 'Move the application to the trash' message.
 
 ![MKI](Img/MKI.png)
-
-### SimpleLoader
-
-**Main Window**
-
-- Select the installed KDK(or download it when asked)
-- Select the kext to install
-- Log messages (operation log)
-- Options
-- Bottom section with buttons that perform some tasks:
-	- merge installed KDK without installing AppleHDA.kext
-	- rebuild extension cache
-	- install AppleHDA.kext
-	- create a new system snapshot or restore the snapshot prior to installing AppleHDA.kext (this undo AppleHDA.kext installation).
-
-![SimpleLoader](Img/SimpleLoader.png)
-
-**About button**
-
-Opens a window with two sections:
-
-- Copyright, current language and link to change language (shows available languages)
-- List of translators.
-
-**No KDK found**
-
-If there is no installed KDK, A warning alerts you to this and offers the option to open the Dortania KDK repository.
-
-![SimpleLoader-nokdk](Img/SimpleLoader-nokdk.png)  
 
 ### Restart
 
