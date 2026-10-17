@@ -77,7 +77,7 @@ For any other questions, consult the README on GitHub.
 Simple interface. The app is now signed and notarized, so you will no longer see 'Move the application to the trash' message.
 
 ![MKI](Img/MKI.png)
-[[title](https://github.com/dortania/OpenCore-Legacy-Patcher)](https://github.com/dortania/OpenCore-Legacy-Patcher)
+
 ### Reminder
 
 If using MyKextInstaller, upgrading or reinstalling macOS Tahoe will lose these changes and you'll need to reinstall AppleHDA.kext again.
