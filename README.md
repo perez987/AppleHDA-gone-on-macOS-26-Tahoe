@@ -23,17 +23,17 @@ Disadvantages:
 - Slightly higher CPU usage than the motherboard chip.
 - Only two connections: speakers (headphones) and microphone, sufficient for most users, but not all.
 
-### Reinstall AppleHDA.kext: MyKextInstaller, SimpleHDA and HDAUniversal
+### Recover motherboard audio: MyKextInstaller, SimpleHDA and HDAUniversal
 
 Developers have been looking for a way to reinstall AppleHDA.kext, extracted from Tahoe Beta 1 or Sequoia installation. It's not a simple task since this kext must be located in /System/Library/Extensions, which by design is a non-writable folder.
 
 [OCLP](https://github.com/dortania/OpenCore-Legacy-Patcher) team is working on a patch that will be applied similarly to current root patches. Still in a beta stage, it's not yet viable for end users.
 
-*Mirone* has [MyKextInstaller](https://github.com/Mirone/MyKextInstaller). Although it's on GitHub, source code isn't yet available. The interface is simple and user-friendly, making it very easy to use. As an added benefit, you can also download AppleHDA.kext along with the app. It modifies the system volume and rebuild kernel collections.
+*Mirone* has [MyKextInstaller](https://github.com/Mirone/MyKextInstaller). It allows you to recover AppleHDA.kext. Although it's on GitHub, source code isn't yet available. The interface is simple and user-friendly, making it very easy to use. As an added benefit, you can also download AppleHDA.kext along with the app. It modifies the system volume and rebuild kernel collections.
 
-*Laobamac* has [SimpleHDA](https://github.com/laobamac/SimpleHDA). The source code is available. SimpleHDA is a Lilu plug-in that restores the original AppleHDA stack through OpenCore injection, allowing AppleALC to use your existing audio configuration. It does not modify the system volume or rebuild kernel collections.
+*Laobamac* has [SimpleHDA](https://github.com/laobamac/SimpleHDA). It doesn’t need to recover AppleHDA.kext. The source code is available. SimpleHDA is a Lilu plug-in that restores the original AppleHDA stack through OpenCore injection, allowing AppleALC to use your existing audio configuration. It does not modify the system volume or rebuild kernel collections.
 
-*Mald0n* has [HDAUniversal](https://www.insanelymac.com/forum/topic/362932-hdauniversal-applehda-like-audio-kext-for-macos-tahoe-and-hackintosh-systems/), a modern AppleHDA-like audio kernel extension for macOS and Hackintosh systems. 
+*Mald0n* has [HDAUniversal](https://www.insanelymac.com/forum/topic/362932-hdauniversal-applehda-like-audio-kext-for-macos-tahoe-and-hackintosh-systems/), a modern AppleHDA-like audio kernel extension for macOS and Hackintosh systems. It doesn’t need to recover AppleHDA.kext.
 
 These applications allows you:
 
