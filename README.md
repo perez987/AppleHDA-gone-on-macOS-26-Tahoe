@@ -14,7 +14,9 @@ Last Intel Macs have a T2 chip that handles audio features and do not need Apple
 
 Without AppleHDA.kext or AppleALC.kext, the ability to use digital audio through the graphics card outputs (HDMI or DisplayPort) is retained because this system relies on other kexts. But those who don't have this option lose audio through the motherboard chip since Tahoe Beta 2.
 
-### October 2026: new way to recover built-in audio only on macOS Tahoe
+<p align="center">✹ ✹ ✹</p>
+
+### 🆕 October 2026: new way to recover built-in audio only on macOS Tahoe
 
 There is a new method to restore the built-in audio on Tahoe: [SimpleHDA.kext](https://github.com/laobamac/SimpleBCM/), developed by *laobamac*. This is a kext used with OpenCore, which is injected at startup just like other kexts.
 Instructions:
@@ -29,6 +31,8 @@ Instructions:
 Go to the source repo and read the README (there is an English version).
 
 I’ve tested it, and it works very well. As for the language in which the sound sources are displayed, it defaults to Chinese unless you add the boot argument `shda-lang=en`, in which case they appear in English. You can also configure other languages—for example, `shda-lang=es`, and so on.
+
+<p align="center">✹ ✹ ✹</p>
 
 ### Alternative Solution: USB Audio Chips
 
