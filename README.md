@@ -14,6 +14,22 @@ Last Intel Macs have a T2 chip that handles audio features and do not need Apple
 
 Without AppleHDA.kext or AppleALC.kext, the ability to use digital audio through the graphics card outputs (HDMI or DisplayPort) is retained because this system relies on other kexts. But those who don't have this option lose audio through the motherboard chip since Tahoe Beta 2.
 
+### October 2026: new way to recover built-in audio only on macOS Tahoe
+
+There is a new method to restore the built-in audio on Tahoe: [SimpleHDA.kext](https://github.com/laobamac/SimpleBCM/), developed by *laobamac*. This is a kext used with OpenCore, which is injected at startup just like other kexts.
+Instructions:
+
+- Open your EFI partition.
+- Add SimpleHDA.kext to the Kexts folder (AppleALC.kext must also be present).
+- In your config.plist, enable AppleALC.kext and add SimpleHDA (AppleALC should come before SimpleHDA; both must follow Lilu, which should always be first).
+- In your boot arguments (`NVRAM → 7C436110-AB2A-4BBB-A880-FE41995C9F82 → boot-args`), add `keepsyms=1 shda-lang=en`.
+- Ensure that your audio `layout-id` is defined in only one place: either in your boot arguments (`NVRAM → 7C436110-AB2A-4BBB-A880-FE41995C9F82 → boot-args`) as `alcid=xx`, or under DeviceProperties (e.g., `PciRoot(0x0)/Pci(0x1F,0x3)` → `layout-id` | Data | `xxxxxxxx`).
+- Restart your system.
+
+Go to the source repo and read the README (there is an English version).
+
+I’ve tested it, and it works very well. As for the language in which the sound sources are displayed, it defaults to Chinese unless you add the boot argument `shda-lang=en`, in which case they appear in English. You can also configure other languages—for example, `shda-lang=es`, and so on.
+
 ### Alternative Solution: USB Audio Chips
 
 Many audio devices that connect to a USB port work natively on macOS; they don't require AppleHDA. I've tried Sound Blaster Play! 3, currently priced at around €15, and it works perfectly on the beta versions of macOS Tahoe. Of course, it also works on the previous macOS versions I've tested it on: Sequoia, Sonoma, and Ventura.
